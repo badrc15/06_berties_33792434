@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Berties Book Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .book-list {
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .book-list th, .book-list td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .book-list th {
+            background-color: #f2a900;
+            color: white;
+        }
+        .book-list tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .book-list tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Berties Book Shop</h1>
+    <table class="book-list">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (availableBooks.length === 0) { %>
+                <tr>
+                    <td colspan="2" style="text-align:center;">No books available</td>
+                </tr>
+            <% } else { %>
+                <% availableBooks.forEach(function(book) { %>
+                    <tr>
+                        <td><%= book.name %></td>
+                        <td>$<%= Number(book.price).toFixed(2) %></td>
+                    </tr>
+                <% }); %>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>

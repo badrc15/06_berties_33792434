@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bargain Books - Berties Book Shop</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f8f8; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        table { max-width: 600px; margin: 20px auto; border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: #f2a900; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr:hover { background-color: #f1f1f1; }
+    </style>
+</head>
+<body>
+    <h1>Bargain Books (Under £20)</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Book Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (bargainBooks.length === 0) { %>
+                <tr><td colspan="2" style="text-align:center;">No bargain books available</td></tr>
+            <% } else { %>
+                <% bargainBooks.forEach(function(book) { %>
+                    <tr>
+                        <td><%= book.name %></td>
+                        <td>£<%= Number(book.price).toFixed(2) %></td>
+                    </tr>
+                <% }); %>
+            <% } %>
+        </tbody>
+    </table>
+</body>
+</html>

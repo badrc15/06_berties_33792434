@@ -1,15 +1,14 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Search <%=shopData.shopName%></title>
-    <link rel="stylesheet"  type="text/css" href="/main.css" />
-  </head>
-  <body>
-    <h1>Search <%=shopData.shopName%></h1>
-    <form action="search_result" method="GET">
-      <p>What book do you want?</p>
-      <input id="search-box" type="text" name="search_text">
-      <input type="submit" value="Search" >
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Books - Berties Book Shop</title>
+</head>
+<body>
+    <h1>Search for a Book</h1>
+    <form action="/books/searchresult" method="GET">
+        <input type="text" name="keyword" placeholder="Enter book name" required>
+        <input type="submit" value="Search">
     </form>
-  </body>
+</body>
 </html>

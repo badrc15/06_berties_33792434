@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results - Berties Book Shop</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8f8f8; padding: 20px; }
+        h1 { text-align: center; color: #333; }
+        ul { max-width: 600px; margin: 20px auto; padding: 0; list-style-type: none; }
+        li { background: white; padding: 12px; margin-bottom: 8px; border-radius: 5px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        strong { color: #f2a900; }
+    </style>
+</head>
+<body>
+    <h1>Search Results for "<%= keyword %>"</h1>
+
+    <% if (searchResults.length === 0) { %>
+        <p style="text-align:center;">No books found</p>
+    <% } else { %>
+        <ul>
+            <% searchResults.forEach(function(book) { %>
+                <li>
+                    <strong><%= book.name %></strong> — £<%= Number(book.price).toFixed(2) %>
+                </li>
+            <% }); %>
+        </ul>
+    <% } %>
+</body>
+</html>
