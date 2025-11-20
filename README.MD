@@ -1,27 +1,62 @@
-Bertie’s Books is a simple, interactive web application for a small bookstore. It allows users to explore the store’s book collection, search for specific books, and add new books to the inventory. The app is designed with ease-of-use in mind and provides dynamic pages to make book browsing and management simple.
+Bertie's Books Web Application
+Overview
 
-Homepage – Welcome page with links to all sections of the website.
+Bertie's Books is a web application that allows users to register, log in, and view a list of registered users. The application also keeps a record of all login attempts for security and auditing purposes.
 
-Search Books – Users can search for books by title. Supports both exact matches and partial matches (e.g., searching “World” returns “Brave New World”).
+Features
 
-View All Books – Lists all books in the database along with their prices.
+User Registration
 
-Add a New Book – Users can submit a book name and price to add new books to the database.
+Users can sign up with a username, first name, last name, email, and password.
 
-Bargain Books – Displays all books priced under £20.
+Passwords are securely stored and not visible to anyone.
 
-The website is built using Node.js, Express, EJS, and MySQL.
+User Login
 
-Book data is stored in a MySQL database with a books table containing id, name, and price columns.
+Registered users can log in using their username and password.
 
-The web pages are rendered dynamically using EJS templates.
+The system verifies the credentials and prevents login if they are incorrect.
 
-Users interact with the website through forms and links:
+List Users
 
-Search for books using the search form.
+A page displays all registered users, but passwords are never shown.
 
-Browse all books on the list page.
+Audit Logging
 
-Add a new book using the add book form.
+Every login attempt, whether successful or failed, is recorded in an audit log.
 
-View bargains under £20 on a dedicated page.
+The audit page shows who tried to log in, whether it was successful, and the time of the attempt.
+
+Database Security
+
+Database credentials are stored in a secure environment file, not in the code, to prevent unauthorized access.
+
+This keeps sensitive information safe, even if the code is shared publicly.
+
+Test User
+
+A pre-registered user named “gold” with password “smiths” is included for testing purposes.
+
+How It Works
+
+Users register through a form and their details are stored securely.
+
+Login attempts are checked against stored data and recorded in an audit log.
+
+Admins or users can view registered users and audit logs.
+
+Database credentials are hidden using environment variables to ensure security.
+
+Getting Started
+
+Set up the database and tables.
+
+Add initial test data, including the “gold” user.
+
+Start the web application.
+
+Use the app through a web browser to register, log in, view users, and check audit logs.
+
+Summary
+
+This application demonstrates secure user registration and login, proper password handling, an audit system for login activity, and secure storage of database credentials. It provides a safe and organized way to manage users in a web application.
