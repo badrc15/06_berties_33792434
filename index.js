@@ -6,10 +6,10 @@ var mysql = require('mysql2');
 const path = require('path')
 // Define the database connection pool
 const db = mysql.createPool({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
+    host: process.env.BB_HOST,
+    user: process.env.BB_USER,
+    password: process.env.BB_PASS,
+    database: process.env.BB_NAME,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
