@@ -1,4 +1,4 @@
-Bertie’s Books is a simple, interactive web application for a small bookstore. It allows users to explore the store’s book collection, search for specific books, and add new books to the inventory. The app is designed with ease-of-use in mind and provides dynamic pages to make book browsing and management simple.
+--Bertie’s Books is a simple, interactive web application for a small bookstore. It allows users to explore the store’s book collection, search for specific books, and add new books to the inventory. The app is designed with ease-of-use in mind and provides dynamic pages to make book browsing and management simple.
 
 Homepage – Welcome page with links to all sections of the website.
 
