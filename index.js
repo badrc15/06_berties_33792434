@@ -1,10 +1,12 @@
-// Import express and ejs
-var express = require ('express')
-var ejs = require('ejs')
-var dotenv = require('dotenv').config();
-var mysql = require('mysql2');
-const path = require('path')
-// Define the database connection pool
+// Import modules
+const express = require('express');
+const ejs = require('ejs');
+const dotenv = require('dotenv').config();
+const mysql = require('mysql2');
+const session = require('express-session');
+const path = require('path');
+
+// Database connection pool
 const db = mysql.createPool({
     host: process.env.BB_HOST,
     user: process.env.BB_USER,
@@ -16,35 +18,38 @@ const db = mysql.createPool({
 });
 global.db = db;
 
+// Create Express app
+const app = express();
+const port = 8000;
 
+// Enable session
+app.use(session({
+    secret: 'somerandomstuff',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { expires: 600000 }
+}));
 
-// Create the express application object
-const app = express()
-const port = 8000
+// Body parser
+app.use(express.urlencoded({ extended: true }));
 
-// Tell Express that we want to use EJS as the templating engine
-app.set('view engine', 'ejs')
+// Static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Set up the body parser 
-app.use(express.urlencoded({ extended: true }))
+// Set EJS templating engine
+app.set('view engine', 'ejs');
 
-// Set up public folder (for css and static js)
-app.use(express.static(path.join(__dirname, 'public')))
+// App-specific data
+app.locals.shopData = { shopName: "Bertie's Books" };
 
-// Define our application-specific data
-app.locals.shopData = {shopName: "Bertie's Books"}
+// Load routes
+const mainRoutes = require("./routes/main");
+const usersRoutes = require('./routes/users');
+const booksRoutes = require('./routes/books');
 
-// Load the route handlers
-const mainRoutes = require("./routes/main")
-app.use('/', mainRoutes)
+app.use('/', mainRoutes);
+app.use('/users', usersRoutes);
+app.use('/books', booksRoutes);
 
-// Load the route handlers for /users
-const usersRoutes = require('./routes/users')
-app.use('/users', usersRoutes)
-
-// Load the route handlers for /books
-const booksRoutes = require('./routes/books')
-app.use('/books', booksRoutes)
-
-// Start the web app listening
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// Start server
+app.listen(port, () => console.log(`App listening on port ${port}`));

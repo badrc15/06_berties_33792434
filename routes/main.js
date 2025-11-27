@@ -1,15 +1,39 @@
-// Create a new router
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-// Handle our routes
-router.get('/',function(req, res, next){
-    res.render('index.ejs')
+const redirectLogin = (req, res, next) => {
+    if (!req.session.userId) {
+        // Only store redirect if not already on login or logout page
+        if (!req.originalUrl.includes('/login') && !req.originalUrl.includes('/logout')) {
+            req.session.redirectTo = req.originalUrl;
+        }
+        return res.redirect('/users/login');
+    }
+    next();
+};
+
+
+// Home page
+router.get('/', (req, res) => {
+    res.render('index.ejs');
 });
 
-router.get('/about',function(req, res, next){
-    res.render('about.ejs')
+// About page
+router.get('/about', (req, res) => {
+    res.render('about.ejs');
 });
 
-// Export the router object so index.js can access it
-module.exports = router
+router.get('/logout', redirectLogin, (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            return res.redirect('/');
+        }
+        // Clear redirectTo so old value is gone
+        req.session = null; 
+        res.render('logout.ejs');
+    });
+});
+
+
+
+module.exports = router;
