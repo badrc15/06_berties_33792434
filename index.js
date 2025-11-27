@@ -5,6 +5,7 @@ const dotenv = require('dotenv').config();
 const mysql = require('mysql2');
 const session = require('express-session');
 const path = require('path');
+const expressSanitizer = require('express-sanitizer');
 
 // Database connection pool
 const db = mysql.createPool({
@@ -32,6 +33,10 @@ app.use(session({
 
 // Body parser
 app.use(express.urlencoded({ extended: true }));
+
+
+// Create an input sanitizer
+app.use(expressSanitizer());
 
 // Static folder
 app.use(express.static(path.join(__dirname, 'public')));
