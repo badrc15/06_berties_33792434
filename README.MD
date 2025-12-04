@@ -89,3 +89,22 @@ Error messages are shown clearly when validation fails.
 
 Conclusion:
 These changes make the system more secure and more reliable. Validation ensures only correct data is accepted, and sanitisation protects against malicious scripts. Together, these updates make the registration and login process safer for users and more robust for the application.
+
+The API allows developers to access information about books in Bertie’s Bookshop in a structured, machine-readable format. It provides a flexible way to retrieve book details programmatically.
+
+Features
+
+List All Books
+The API returns a full list of books in the database.
+
+Search by Keyword
+You can filter the results to include only books whose titles contain a specific word or phrase.
+
+Price Range Filtering
+The API allows filtering by minimum and maximum price, so you can retrieve books within a specific price range.
+
+Sorting
+Results can be sorted either by book name or by price, enabling easier browsing or integration into other applications.
+
+Combination of Filters
+Search, price range, and sorting features can be used together to retrieve exactly the books you need.
