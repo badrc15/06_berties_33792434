@@ -26,13 +26,17 @@ const app = express();
 const port = 8000;
 
 // Enable session
-app.use(session({
-    secret: 'somerandomstuff',
+app.use(
+  session({
+    secret: "somesecretkey",
     resave: false,
     saveUninitialized: false,
-    cookie: { expires: 600000 }
-}));
-
+    cookie: {
+      secure: false,     // IMPORTANT: must be false on HTTP
+      sameSite: "lax"
+    }
+  })
+);
 // Body parser
 app.use(express.urlencoded({ extended: true }));
 
