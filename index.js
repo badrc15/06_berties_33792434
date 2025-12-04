@@ -58,6 +58,7 @@ app.use('/', mainRoutes);
 app.use('/users', usersRoutes);
 app.use('/books', booksRoutes);
 app.use('/', weatherRoutes);
+app.use('/api', require('./routes/api')(db));
 
 // Start server
 app.listen(port, () => console.log(`App listening on port ${port}`));
