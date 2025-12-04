@@ -6,6 +6,8 @@ const mysql = require('mysql2');
 const session = require('express-session');
 const path = require('path');
 const expressSanitizer = require('express-sanitizer');
+const weatherRoutes = require('./routes/weather');
+
 
 // Database connection pool
 const db = mysql.createPool({
@@ -55,6 +57,7 @@ const booksRoutes = require('./routes/books');
 app.use('/', mainRoutes);
 app.use('/users', usersRoutes);
 app.use('/books', booksRoutes);
+app.use('/', weatherRoutes);
 
 // Start server
 app.listen(port, () => console.log(`App listening on port ${port}`));
