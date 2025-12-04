@@ -122,7 +122,17 @@ router.post("/loggedin", (req, res) => {
 
             req.session.userId = user.username;
 
-            res.redirect(req.baseUrl + "/loggedin");
+            // Redirect after login
+            // If redirectTo exists, use it. Otherwise, go to loggedin page.
+            let redirectTo = req.session.redirectTo || req.baseUrl + "/loggedin";
+            delete req.session.redirectTo;
+
+            // Fix: ensure redirectTo includes /usr/459 prefix if on VM
+            if (!redirectTo.startsWith(req.baseUrl)) {
+                redirectTo = req.baseUrl + redirectTo;
+            }
+
+            res.redirect(redirectTo);
         });
     });
 });

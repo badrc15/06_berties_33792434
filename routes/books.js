@@ -4,10 +4,15 @@ const router = express.Router();
 // Middleware: Protect routes
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId) {
-        return res.redirect(req.baseUrl + '/login');
+        // Save the path relative to the router
+        if (!req.originalUrl.includes("/login") && !req.originalUrl.includes("/logout")) {
+            req.session.redirectTo = req.originalUrl; 
+        }
+        return res.redirect(req.baseUrl + "/login"); 
     }
     next();
 };
+
 
 // Search page
 router.get('/search', (req, res) => {
