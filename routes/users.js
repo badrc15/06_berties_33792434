@@ -122,13 +122,20 @@ router.post("/loggedin", (req, res) => {
 
             req.session.userId = user.username;
 
-            const redirectTo = req.session.redirectTo || "/books/list";
-            delete req.session.redirectTo;
-
-            res.redirect(redirectTo);
+            res.redirect("/users/loggedin");
         });
     });
 });
+
+router.get("/loggedin", (req, res) => {
+    // Optional: check if user is logged in
+    if (!req.session.userId) {
+        return res.redirect("/users/login");
+    }
+
+    res.render("loggedin", { username: req.session.userId });
+});
+
 
 // -------------------
 // GET: Audit Page (PROTECTED)
