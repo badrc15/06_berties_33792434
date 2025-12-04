@@ -4,7 +4,7 @@ const router = express.Router();
 // Middleware: Protect routes
 const redirectLogin = (req, res, next) => {
     if (!req.session.userId) {
-        return res.redirect('/users/login');
+        return res.redirect(req.baseUrl + '/login');
     }
     next();
 };

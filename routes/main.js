@@ -7,7 +7,7 @@ const redirectLogin = (req, res, next) => {
         if (!req.originalUrl.includes('/login') && !req.originalUrl.includes('/logout')) {
             req.session.redirectTo = req.originalUrl;
         }
-        return res.redirect('/users/login');
+        return res.redirect(req.baseUrl + '/login');
     }
     next();
 };

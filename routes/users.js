@@ -15,7 +15,7 @@ const redirectLogin = (req, res, next) => {
         if (!req.originalUrl.includes("/login") && !req.originalUrl.includes("/logout")) {
             req.session.redirectTo = req.originalUrl;
         }
-        return res.redirect("/users/login");
+        return res.redirect(req.baseUrl + "/login")
     }
     next();
 };
@@ -122,7 +122,7 @@ router.post("/loggedin", (req, res) => {
 
             req.session.userId = user.username;
 
-            res.redirect("/users/loggedin");
+            res.redirect(req.baseUrl + "/loggedin");
         });
     });
 });
@@ -130,7 +130,7 @@ router.post("/loggedin", (req, res) => {
 router.get("/loggedin", (req, res) => {
     // Optional: check if user is logged in
     if (!req.session.userId) {
-        return res.redirect("/users/login");
+        return res.redirect(req.baseUrl + "/login");
     }
 
     res.render("loggedin", { username: req.session.userId });
